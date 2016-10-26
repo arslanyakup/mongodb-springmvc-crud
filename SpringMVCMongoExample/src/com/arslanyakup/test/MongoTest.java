@@ -15,7 +15,7 @@ public class MongoTest {
 	public static void main(String[] args) {
 
 		ApplicationContext context = new ClassPathXmlApplicationContext("/META-INF/springContext.xml");
-		EmployeeRepository employeeRepository = context.getBean(EmployeeRepository.class);
+//		EmployeeRepository employeeRepository = context.getBean(EmployeeRepository.class);
 		EmployeeDAO employeeDAO = context.getBean(EmployeeDAO.class);
 
 		Department department1 = new Department("Computer Eng.", 1);
@@ -23,11 +23,11 @@ public class MongoTest {
 		Department department3 = new Department("Machine Eng.", 3);
 		Department department4 = new Department("Mechatronic Eng.", 4);
 
-		Employee employee1 = new Employee("Muhammet", "Güler", 3000, department1);
-		Employee employee2 = new Employee("Emre", "Tunç", 5000, department2);
-		Employee employee3 = new Employee("Fýrat", "Ay", 2000, department3);
-		Employee employee4 = new Employee("Selim", "Hamzaoðullarý", 3000, department4);
-		Employee employee5 = new Employee("Emre", "Yýlmaz", 4000, department1);
+		Employee employee1 = new Employee("Muhammet", "GÃ¼ler", 3000, department1);
+		Employee employee2 = new Employee("Emre", "TunÃ§", 5000, department2);
+		Employee employee3 = new Employee("FÄ±rat", "Ay", 2000, department3);
+		Employee employee4 = new Employee("Selim", "HamzaoÄŸullarÄ±", 3000, department4);
+		Employee employee5 = new Employee("Emre", "YÄ±lmaz", 4000, department1);
 
 		List<Employee> employees = new ArrayList<>();
 		employees.add(employee5);
@@ -36,6 +36,13 @@ public class MongoTest {
 		employees.add(employee2);
 		employees.add(employee1);
 
-		//employeeDAO.insertAllEmployees(employees);
+        // insert isleminden sonra burasi yorum satiri yapildi
+//		employeeDAO.insertAllEmployees(employees);
+
+		List<Employee> allEmployees = employeeDAO.findAll();
+		System.out.println(allEmployees);
+
+		List<Employee> employeesByNames = employeeDAO.findAllBy("Emre");
+		System.out.println(employeesByNames);
 	}
 }

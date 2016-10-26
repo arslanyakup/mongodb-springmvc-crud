@@ -3,7 +3,9 @@ package com.arslanyakup.dao;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
 import com.arslanyakup.model.Employee;
@@ -11,24 +13,36 @@ import com.arslanyakup.model.Employee;
 @Repository
 public class EmployeeDAOImpl implements EmployeeDAO {
 
-	MongoTemplate mongoTemplate;
+	// interface kullanman Inversion of Control (IoC) bagimliligi icin gerekli bir kosuldur.
+	private final MongoOperations mongos;
 
 	@Autowired
-	public EmployeeDAOImpl(MongoTemplate mongoTemplate) {
+	public EmployeeDAOImpl(final MongoOperations mongos) {
 		super();
-		this.mongoTemplate = mongoTemplate;
+		this.mongos = mongos;
 	}
 
 	@Override
 	public Employee insertEmployee(Employee employee) {
-		mongoTemplate.insert(employee);
+		mongos.insert(employee);
 		return employee;
 	}
 
 	@Override
-	public List<Employee> insertAllEmployees(List<Employee> employees) {
-		mongoTemplate.insert(employees, Employee.class);
-		return employees;
+	public void insertAllEmployees(List<Employee> employees) {
+		mongos.insert(employees, Employee.class);
+	}
+
+	@Override
+	public List<Employee> findAll() {
+		return mongos.findAll(Employee.class);
+	}
+
+	@Override
+	public List<Employee> findAllBy(String name) {
+
+		Query query = new Query().addCriteria(Criteria.where("name").is(name));
+		return mongos.find(query, Employee.class);
 	}
 
 }

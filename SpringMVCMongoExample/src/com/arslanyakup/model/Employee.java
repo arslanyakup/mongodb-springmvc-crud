@@ -3,6 +3,7 @@ package com.arslanyakup.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+// daha kullanisli kucuk harfli koleksiyon isimleri yapmani oneririm or. employees
 @Document(collection = "EmployeeCollection", language = "turkish")
 public class Employee {
 
