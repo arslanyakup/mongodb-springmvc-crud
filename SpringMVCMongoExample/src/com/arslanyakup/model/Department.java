@@ -1,7 +1,13 @@
 package com.arslanyakup.model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection="departments",language="turkish")
 public class Department {
 
+	@Id
+	private String id;
 	private String dept_name;
 	private int dept_no;
 
@@ -21,6 +27,14 @@ public class Department {
 		this.dept_no = dept_no;
 	}
 
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public Department(String dept_name, int dept_no) {
 		super();
 		this.dept_name = dept_name;
@@ -29,12 +43,15 @@ public class Department {
 
 	public Department() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public String toString() {
-		return "Department [dept_name=" + dept_name + ", dept_no=" + dept_no + "]";
+		return "Department [id=" + id + ", dept_name=" + dept_name + ", dept_no=" + dept_no + "]";
 	}
+	
+	
+
+
 
 }

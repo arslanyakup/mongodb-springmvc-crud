@@ -3,13 +3,11 @@ package com.arslanyakup.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-// daha kullanisli kucuk harfli koleksiyon isimleri yapmani oneririm or. employees
-@Document(collection = "EmployeeCollection", language = "turkish")
+@Document(collection = "employees", language = "turkish")
 public class Employee {
 
 	@Id
 	private String id;
-
 	private String name;
 	private String surname;
 	private int salary;
@@ -64,9 +62,17 @@ public class Employee {
 		this.department = department;
 	}
 
+	public Employee(String id, String name, String surname, int salary, Department department) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.surname = surname;
+		this.salary = salary;
+		this.department = department;
+	}
+
 	public Employee() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

@@ -11,8 +11,7 @@ public class MongoConfiguration extends AbstractMongoConfiguration {
 
 	@Override
 	protected String getDatabaseName() {
-		// daha kullanisli bir isim vermeni tavsiye ederim kucuk harfle baslayan sonunda DB olmayan ve genel bir isim db icin
-		return "EmployeeDB";
+		return "mongoCrud";
 	}
 
 	@Override

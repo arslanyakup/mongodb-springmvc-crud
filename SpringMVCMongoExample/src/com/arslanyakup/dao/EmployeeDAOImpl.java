@@ -13,7 +13,7 @@ import com.arslanyakup.model.Employee;
 @Repository
 public class EmployeeDAOImpl implements EmployeeDAO {
 
-	// interface kullanman Inversion of Control (IoC) bagimliligi icin gerekli bir kosuldur.
+
 	private final MongoOperations mongos;
 
 	@Autowired
@@ -43,6 +43,23 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
 		Query query = new Query().addCriteria(Criteria.where("name").is(name));
 		return mongos.find(query, Employee.class);
+	}
+
+	@Override
+	public void removeEmployee(String id) {
+		mongos.remove(findBy(id));
+	}
+
+	@Override
+	public Employee findBy(String id) {
+		Query query = Query.query(Criteria.where("id").is(id));
+		Employee employee = mongos.findOne(query, Employee.class);
+		return employee;
+	}
+
+	@Override
+	public Employee updateEmployee(Employee employee) {
+		return null;
 	}
 
 }
