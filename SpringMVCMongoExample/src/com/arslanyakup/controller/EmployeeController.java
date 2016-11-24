@@ -36,7 +36,7 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = "/employee.add", method = RequestMethod.POST)
-	public String employeeAddMethod(@ModelAttribute("newEmployee") Employee employee, Model model) {
+	public String employeeAddMethod(@ModelAttribute("newEmployee") Employee employee) {
 		Department department = departmentDAO.findBy(employee.getDepartment().getId());
 		employee.setDepartment(department);
 		employeeDAO.insertEmployee(employee);
@@ -50,18 +50,23 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = "/employee.edit{empId}", method = RequestMethod.GET)
-	public String employeeEdit(@RequestParam("empId") String id, Model model) {
-		Employee employee = new Employee(id, employeeDAO.findBy(id).getName(), employeeDAO.findBy(id).getSurname(),
-				employeeDAO.findBy(id).getSalary(), employeeDAO.findBy(id).getDepartment());
+	public String employeeEdit(@RequestParam("empId") String emp_id, Model model) {
+		Employee employee = employeeDAO.findBy(emp_id);
 		model.addAttribute("newEmployee", employee);
 		model.addAttribute("deptList", departmentDAO.findAllDepartment());
 		model.addAttribute("empList", employeeDAO.findAll());
 		model.addAttribute("update", "update");
+		System.out.println(employee);
 		return "/index";
 	}
 
-	@RequestMapping(value = "/employee.update", method = RequestMethod.POST)
-	public String updateEmployee(@ModelAttribute("newEmployee") Employee employee) {
+	@RequestMapping(value = "/employee.update{empId}", method = RequestMethod.POST)
+	public String employeeUpdate(@ModelAttribute("newEmployee") Employee employee) {
+		Department department = departmentDAO.findBy(employee.getDepartment().getId());
+		employee.setDepartment(department);
+		System.out.println(employee);
+		employeeDAO.updateEmployee(employee);
+		System.out.println("update çalýþtý...");
 		return "redirect:/";
 	}
 

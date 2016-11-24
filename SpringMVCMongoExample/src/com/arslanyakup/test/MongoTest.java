@@ -26,36 +26,26 @@ public class MongoTest {
 		Employee employee4 = new Employee("Selim", "Hamzaogullari", 3000, department4);
 		Employee employee5 = new Employee("Emre", "Yilmaz", 4000, department1);
 
-		
-		
-//		List<Employee> employees = new ArrayList<>();
-//		employees.add(employee5);
-//		employees.add(employee4);
-//		employees.add(employee3);
-//		employees.add(employee2);
-//		employees.add(employee1);
+		// List<Employee> employees = new ArrayList<>();
+		// employees.add(employee5);
+		// employees.add(employee4);
+		// employees.add(employee3);
+		// employees.add(employee2);
+		// employees.add(employee1);
 
-		
-		
-//		employeeDAO.insertAllEmployees(employees);
+		// employeeDAO.insertAllEmployees(employees);
 
-		
-		
-//		List<Employee> allEmployees = employeeDAO.findAll();
-//		System.out.println(allEmployees);
-//		List<Employee> employeesByNames = employeeDAO.findAllBy("Emre");
-//		System.out.println(employeesByNames);
+		// List<Employee> allEmployees = employeeDAO.findAll();
+		// System.out.println(allEmployees);
+		// List<Employee> employeesByNames = employeeDAO.findAllBy("Emre");
+		// System.out.println(employeesByNames);
 
-		
-		
-//		List<Department> deptList = new ArrayList<>();
-//		deptList.add(department4);
-//		deptList.add(department3);
-//		deptList.add(department2);
-//		deptList.add(department1);
+		// List<Department> deptList = new ArrayList<>();
+		// deptList.add(department4);
+		// deptList.add(department3);
+		// deptList.add(department2);
+		// deptList.add(department1);
 
-		
-		
-//		departmentDAO.insertAllDepartment(deptList);
+		// departmentDAO.insertAllDepartment(deptList);
 	}
 }

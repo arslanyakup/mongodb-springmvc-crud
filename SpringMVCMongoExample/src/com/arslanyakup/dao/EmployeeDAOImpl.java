@@ -6,13 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
-
 import com.arslanyakup.model.Employee;
+
+import static org.springframework.data.mongodb.core.query.Criteria.where;
+import static org.springframework.data.mongodb.core.query.Query.query;
 
 @Repository
 public class EmployeeDAOImpl implements EmployeeDAO {
-
 
 	private final MongoOperations mongos;
 
@@ -40,7 +42,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
 	@Override
 	public List<Employee> findAllBy(String name) {
-
 		Query query = new Query().addCriteria(Criteria.where("name").is(name));
 		return mongos.find(query, Employee.class);
 	}
@@ -59,7 +60,13 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
 	@Override
 	public Employee updateEmployee(Employee employee) {
-		return null;
+		Update update = new Update();
+		update.set("name", employee.getName());
+		update.set("surname", employee.getSurname());
+		update.set("salary", employee.getSalary());
+		update.set("department", employee.getDepartment());
+		mongos.updateFirst(query(where("_id").is(employee.getId())), update, Employee.class);
+		return employee;
 	}
 
 }

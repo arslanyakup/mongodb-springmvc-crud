@@ -11,7 +11,6 @@ public class Employee {
 	private String name;
 	private String surname;
 	private int salary;
-
 	private Department department;
 
 	public String getId() {
@@ -69,6 +68,12 @@ public class Employee {
 		this.surname = surname;
 		this.salary = salary;
 		this.department = department;
+	}
+	
+
+	public Employee(String id) {
+		super();
+		this.id = id;
 	}
 
 	public Employee() {

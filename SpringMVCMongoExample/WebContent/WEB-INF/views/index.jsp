@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
@@ -20,21 +21,24 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
 	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 	crossorigin="anonymous"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script type="text/javascript" src="/resources/js/table-datatables-editable.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript"
+	src="/resources/js/table-datatables-editable.min.js"></script>
 <script type="text/javascript" src="/resources/js/datatable.min.js"></script>
-<script type="text/javascript" src="/resources/js/datatables.bootstrap.js"></script>
+<script type="text/javascript"
+	src="/resources/js/datatables.bootstrap.js"></script>
 
 
 
 </head>
 <body>
-<c:url var="url" value="employee.add"/>
-<c:set var="buttonName" value="Add"/>
-<c:if test="${!empty update}">
-	<c:url var="url" value="employee.update"/>
-	<c:set var="buttonName" value="Update"/>
-</c:if>
+	<c:url var="url" value="employee.add" />
+	<c:set var="buttonName" value="Add" />
+	<c:if test="${!empty update}">
+		<c:url var="url" value="employee.update" />
+		<c:set var="buttonName" value="Update" />
+	</c:if>
 
 
 	<div class="container-fluid">
@@ -46,6 +50,14 @@
 							method="post" action="${url}">
 							<fieldset>
 								<legend style="color: #990000">Employee Add</legend>
+								<c:if test="${!empty update}">
+									<div class="form-group">
+										<label class="col-md-4 control-label" for="name">Id</label>
+										<div class="col-md-4">
+											<form:input id="name" path="id" type="text" />
+										</div>
+									</div>
+								</c:if>
 								<div class="form-group">
 									<label class="col-md-4 control-label" for="name">Name</label>
 									<div class="col-md-4">
@@ -81,8 +93,13 @@
 								<div class="form-group">
 									<label class="col-md-4 control-label" for="add"></label>
 									<div class="col-md-4">
+
 										<input type="submit" id="btnAdd" class="btn btn-primary"
 											value="${buttonName}" style="float: right" />
+											<c:if test="${!empty update}">
+												<input type="submit" id="btnAdd" class="btn btn-primary"
+													value="Vazgeç" style="float: 10px;" />
+											</c:if>
 									</div>
 								</div>
 							</fieldset>
@@ -114,10 +131,11 @@
 									<td>${employee.surname}</td>
 									<td>${employee.salary}</td>
 									<td>${employee.department.dept_name}</td>
-									<td class="center">
-										<a class="edit" href="employee.edit?empId=${employee.id}" style="padding-left: 25px;"> Edit</a> 
-										<a class="delete" href="employee.delete?empId=${employee.id}" style="padding-right: 25px; float: right;">Delete</a>
-									</td>
+									<td class="center"><a class="edit"
+										href="employee.edit?empId=${employee.id}"
+										style="padding-left: 25px;"> Edit</a> <a class="delete"
+										href="employee.delete?empId=${employee.id}"
+										style="padding-right: 25px; float: right;">Delete</a></td>
 								</tr>
 							</c:forEach>
 						</tbody>
